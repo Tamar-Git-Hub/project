@@ -1,12 +1,6 @@
+const Recipe=require('../models/Recipe')
 
-exports.addRecipe=(req,res)=>{
-    res.json()
-}
-
-exports.deleteRecipe=(req,res)=>{
-    res.status()
-}
-
-exports.updateRecipe=(req,res)=>{
-    res.status()
+exports.addRecipe=async (req,res)=>{
+    const recipe = await Recipe.create(req.body);
+    res.json(recipe)
 }
