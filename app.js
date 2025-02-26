@@ -10,8 +10,8 @@ connectDB()
 app.use(cors(corsOptions))
 app.use(express.json())
 app.use(express.static("public"))
-app.get("/",(req,res)=>{
-res.send("this is the home page")
+app.get("/", (req, res) => {
+    res.send("this is the home page")
 })
 // app.listen(PORT, ()=>{
 // console.log(`Server running on port ${PORT}`)
@@ -19,8 +19,7 @@ res.send("this is the home page")
 mongoose.connection.once('open', () => {
     console.log('Connected to MongoDB')
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
-    })
-    mongoose.connection.on('error', err => {
+})
+mongoose.connection.on('error', err => {
     console.log(err)
-    })
-    
+})
