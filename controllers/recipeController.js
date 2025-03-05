@@ -7,11 +7,26 @@ exports.addRecipe=async (req,res)=>{
 
 exports.getAllRecipes = async (req, res) => {
     try {
-
       const recipe = await Recipe.find();
       res.json(recipe);
     } catch (error) {
       console.error('Failed to get recipes:', error);
       res.status(500).json({ message: 'Failed to get recipes' });
+    }
+    res.status().json()
+  };
+
+  exports.deleteRecipe = async (req, res) => {
+    const {id}  = req.params
+    console.log(id);
+    try {
+      const deletedUser = await Recipe.findOneAndDelete({ _id: id });
+      if (!deletedUser) {
+        return res.status(404).json({ message: 'Recipe not found' });
+      }
+      res.json({ message: 'Recipe deleted successfully' });
+    } catch (error) {
+      console.error('Failed to delete recipe:', error);
+      res.status(500).json({ message: 'Failed to delete recipe' });
     }
   };
